@@ -1,0 +1,10 @@
+numpy<2
+torch
+torchvision
+transformers
+pandas
+Pillow
+streamlit
+accelerate
+sentencepiece
+peft
