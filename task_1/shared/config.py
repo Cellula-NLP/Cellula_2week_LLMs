@@ -1,0 +1,14 @@
+# Modern Dark Teal Palette
+BG_GRADIENT = "linear-gradient(135deg, #0F766E 0%, #115E59 100%)"
+TEAL_ACCENT = "#14B8A6"
+TEAL_HOVER = "#0D9488"
+CARD_BG = "rgba(255, 255, 255, 0.08)"
+CARD_BORDER = "rgba(255, 255, 255, 0.15)"
+TEXT_MAIN = "#FFFFFF"
+TEXT_MUTED = "#CCFBF1"
+TOXIC_COLOR = "#EF4444"
+SAFE_COLOR = "#10B981"
+
+# App Settings
+MAX_IMAGE_SIZE_MB = 5
+ALLOWED_IMAGE_TYPES = ["jpg", "jpeg", "png"]
