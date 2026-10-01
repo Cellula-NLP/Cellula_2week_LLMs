@@ -1,4 +1,5 @@
 import torch
+import torch.quantization
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
@@ -9,13 +10,20 @@ class ImageCaptioner:
     """
 
     def __init__(self, model_name: str = "Salesforce/blip-image-captioning-base"):
-        # Check if GPU is available, otherwise use CPU
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+
+        self.device = "cpu"
 
         print(f"Loading Image Captioning model on {self.device}...")
         try:
             self.processor = BlipProcessor.from_pretrained(model_name)
-            self.model = BlipForConditionalGeneration.from_pretrained(model_name).to(self.device)
+            self.model = BlipForConditionalGeneration.from_pretrained(model_name)
+
+            # Apply Quantization
+            print("Applying dynamic quantization to BLIP model...")
+            self.model = torch.quantization.quantize_dynamic(
+                self.model, {torch.nn.Linear}, dtype=torch.qint8
+            )
+            self.model.to(self.device)
         except Exception as e:
             print(f"Error loading BLIP model: {e}")
             raise

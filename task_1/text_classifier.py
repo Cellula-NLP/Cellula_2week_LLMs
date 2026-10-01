@@ -1,4 +1,5 @@
 import torch
+import torch.quantization
 from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
 from peft import LoraConfig, get_peft_model, TaskType
 
@@ -10,8 +11,7 @@ class ToxicityClassifier:
     """
 
     def __init__(self, model_name: str = "martin-ha/toxic-comment-model"):
-        # Dynamic device selection
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = "cpu"
         print(f"Loading Text Classification model on {self.device}...")
 
         try:
@@ -20,8 +20,6 @@ class ToxicityClassifier:
             self.base_model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
             # 2. Configure LoRA for DistilBERT
-            # Target the query and value projection layers (q_lin, v_lin)
-            # You can also include "k_lin" for keys if desired
             lora_config = LoraConfig(
                 task_type=TaskType.SEQ_CLS,
                 r=8,
@@ -32,18 +30,26 @@ class ToxicityClassifier:
 
             # 3. Apply LoRA to the base model
             self.peft_model = get_peft_model(self.base_model, lora_config)
+
+            # 4. Merge LoRA weights into the base model
+            self.peft_model = self.peft_model.merge_and_unload()
             self.peft_model.to(self.device)
             self.peft_model.eval()
 
-            # 4. Create the pipeline using the LoRA-wrapped model
-            pipeline_device = 0 if torch.cuda.is_available() else -1
+            # 5. Apply Quantization
+            print("Applying dynamic quantization to Text Classifier...")
+            self.peft_model = torch.quantization.quantize_dynamic(
+                self.peft_model, {torch.nn.Linear}, dtype=torch.qint8
+            )
+
+            # 6. Create the pipeline using the quantized model
             self.classifier = pipeline(
                 "text-classification",
                 model=self.peft_model,
                 tokenizer=self.tokenizer,
-                device=pipeline_device
+                device=-1
             )
-            print("Text Classifier with LoRA loaded successfully.")
+            print("Text Classifier with LoRA and Quantization loaded successfully.")
 
         except Exception as e:
             print(f"Error loading Text Classifier: {e}")
