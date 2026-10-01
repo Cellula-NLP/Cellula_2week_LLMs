@@ -23,13 +23,13 @@ Simply type a message or upload an image, and the AI will instantly evaluate its
 ## 📸 Screenshots
 
 ### Main Interface
-![Main UI](assets/main.png)
+![Main UI](https://i.ibb.co/Rkt6kMHS/Screenshot-2026-10-01-at-4-38-56-pm.png)
 
 ### Text Classification
-![Text Classification](assets/text.png)
+![Text Classification](https://i.ibb.co/RpsxznpM/Screenshot-2026-10-01-at-4-39-35-pm.png)
 
 ### Image Classification
-![Image Classification](assets/image.png)
+![Image Classification](https://i.ibb.co/4wqx9W3t/Screenshot-2026-10-01-at-4-39-52-pm.png)
 
 ---
 
@@ -37,9 +37,7 @@ Simply type a message or upload an image, and the AI will instantly evaluate its
 
 - **Text Analysis:** Enter any text to instantly detect toxic language.
 - **Image Analysis:** Upload an image. The AI generates a caption and then analyzes it for toxicity.
-- **Live Dashboard:** Track your total, toxic, and safe classifications in the sidebar.
-- **Modern UI:** Built with a responsive, trendy glassmorphism design.
-
+  
 ---
 
 ## 🚀 Quick Start
@@ -48,3 +46,5 @@ Simply type a message or upload an image, and the AI will instantly evaluate its
    ```bash
    git clone https://github.com/Cellula-NLP/Cellula_2week_LLMs.git
    cd Cellula_2week_LLMs/task_1
+   pip install -r requirements.txt
+   streamlit run app.py
