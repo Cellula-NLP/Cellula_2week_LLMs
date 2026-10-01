@@ -33,7 +33,7 @@ class DatabaseManager:
                 "Classification": classification
             }
 
-            # Append to CSV without reading the whole file into memory
+            # Append to CSV
             df = pd.DataFrame([new_data])
             df.to_csv(self.filepath, mode='a', header=False, index=False)
             print("Record saved successfully.")

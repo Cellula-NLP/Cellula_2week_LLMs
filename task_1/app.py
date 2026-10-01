@@ -1,8 +1,8 @@
 """
 Architecture:
     - Streamlit UI  ->  app.py
-    - Image Captioning  ->  image_caption.py (BLIP)
-    - Text Classification  ->  text_classifier.py (DistilBERT with LoRA)
+    - Image Captioning  ->  imagecaption.py (BLIP)
+    - Text Classification  ->  textclassifier.py (DistilBERT based model)
     - Persistence  ->  database.py (CSV)
     - Styling  ->  styles.py
     - UI Components  ->  ui_components.py
@@ -30,8 +30,8 @@ from shared.utils import is_online, validate_image
 @st.cache_resource(show_spinner=False)
 def load_pipeline():
     """Load both AI models once and reuse them across reruns."""
-    from image_caption import ImageCaptioner
-    from text_classifier import ToxicityClassifier
+    from imagecaption import ImageCaptioner
+    from textclassifier import ToxicityClassifier
 
     captioner = ImageCaptioner()
     classifier = ToxicityClassifier()
@@ -53,7 +53,7 @@ def main() -> None:
     db = DatabaseManager()
 
     # Load Models
-    with st.spinner("🔧 Loading AI models... (first run may take a moment)"):
+    with st.spinner("🔧 Loading AI models... (Just moment :) )"):
         try:
             captioner, classifier = load_pipeline()
         except Exception as exc:

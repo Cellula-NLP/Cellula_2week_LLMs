@@ -1,4 +1,3 @@
-# Modern Dark Teal Palette
 BG_GRADIENT = "linear-gradient(135deg, #0F766E 0%, #115E59 100%)"
 TEAL_ACCENT = "#14B8A6"
 TEAL_HOVER = "#0D9488"

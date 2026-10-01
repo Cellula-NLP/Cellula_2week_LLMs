@@ -19,7 +19,7 @@ class ImageCaptioner:
             self.model = BlipForConditionalGeneration.from_pretrained(model_name)
 
             # Apply Quantization
-            print("Applying dynamic quantization to BLIP model...")
+            print("Applying dynamic quantization to BLIP model")
             self.model = torch.quantization.quantize_dynamic(
                 self.model, {torch.nn.Linear}, dtype=torch.qint8
             )

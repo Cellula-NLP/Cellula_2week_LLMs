@@ -27,7 +27,6 @@ COPY . .
 RUN python -c "from transformers import BlipProcessor, BlipForConditionalGeneration; BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base'); BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base')"
 RUN python -c "from transformers import AutoTokenizer, AutoModelForSequenceClassification; AutoTokenizer.from_pretrained('martin-ha/toxic-comment-model'); AutoModelForSequenceClassification.from_pretrained('martin-ha/toxic-comment-model')"
 
-# Expose the port (best practice, even if not strictly required by Render)
 EXPOSE 8501
 
 # Command to run the application, using the port provided by Render
