@@ -27,9 +27,10 @@ Simply type a message or upload an image, and the AI will instantly evaluate its
 
 ### Text Classification
 ![Text Classification](https://i.ibb.co/RpsxznpM/Screenshot-2026-10-01-at-4-39-35-pm.png)
+![Text Classification](https://i.ibb.co/4wqx9W3t/Screenshot-2026-10-01-at-4-39-52-pm.png)
 
 ### Image Classification
-![Image Classification](https://i.ibb.co/4wqx9W3t/Screenshot-2026-10-01-at-4-39-52-pm.png)
+![Text Classification](https://i.ibb.co/hR5wNyVB/Screenshot-2026-10-02-at-2-09-11-pm.png)
 
 ---
 
